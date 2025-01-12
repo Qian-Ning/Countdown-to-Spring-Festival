@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta http-equiv="Cache-Control" content="no-transform" />
+		<meta name="applicable-device" content="pc mobile">
+		<meta name="MobileOptimized" content="width" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="还有多少天过年,距离春节还有多少天,2023年春节倒计时">
+		<meta property="og:description"
+			content="春节的祝福,二月里送到.还有多少天过年,是您我最关心的时间了,2023年春节计时器为您记录距离过年,春节还有多少天,还有多少天放假,春节还有多少天倒计时已为每位朋友开启.一起迎接2023年春节吧!">
+		<meta property="og:image" content="./static/image/icon.png">
+		<title>还有多少天过年,距离春节还有多少天,2023年春节倒计时</title>
+		<meta name="description"
+			content="春节的祝福,二月里送到.还有多少天过年,是您我最关心的时间了,2023年春节计时器为您记录距离过年,春节还有多少天,还有多少天放假,春节还有多少天倒计时已为每位朋友开启.一起迎接2023年春节吧!" />
+		<meta name="keywords" content="还有多少天过年，距离春节还有多少天，2023年春节倒计时" />
+		<link rel="stylesheet" type="text/css" href="./static/css/daojishi.css?t=1218154088" />
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+		<script src="./static/js/times.js"></script>
+		<style>
+			/* 现代化风格优化 */
+			:root {
+				--primary-color: #d81e06;
+				--gradient-primary: linear-gradient(145deg, #ff3019, #d81e06);
+				--shadow-color: rgba(216, 30, 6, 0.2);
+				--bg-color: #fff5f5;
+			}
+
+			body {
+				background: linear-gradient(135deg, #ff9b9b, #ffe4e4, #ffd7d7, #ffecec);
+				animation: gradientBG 15s ease infinite;
+				background-size: 400% 400%;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+				min-height: 100vh;
+				margin: 0;
+				padding: 0;
+				position: relative;
+			}
+
+			/* 添加渐变动画 */
+			@keyframes gradientBG {
+				0% { background-position: 0% 50% }
+				50% { background-position: 100% 50% }
+				100% { background-position: 0% 50% }
+			}
+
+			/* 添加呼吸光效 */
+			@keyframes breathe {
+				0%, 100% { box-shadow: 0 10px 30px rgba(216, 30, 6, 0.1); }
+				50% { box-shadow: 0 15px 40px rgba(216, 30, 6, 0.2); }
+			}
+
+			/* 添加浮动动画 */
+			@keyframes float {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(-10px); }
+			}
+
+			/* 优化主容器 */
+			.section.bg3 {
+				background: rgba(255, 255, 255, 0.9);
+				backdrop-filter: blur(20px);
+				border: 2px solid rgba(255, 255, 255, 0.8);
+				animation: breathe 3s infinite;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.section.bg3::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: 
+					linear-gradient(45deg, transparent 48%, #d81e06 49%, #d81e06 51%, transparent 52%) 0 0/20px 20px,
+					linear-gradient(-45deg, transparent 48%, #d81e06 49%, #d81e06 51%, transparent 52%) 0 0/20px 20px;
+				opacity: 0.03;
+				pointer-events: none;
+			}
+
+			/* 优化时间显示卡片 */
+			.current-time, .target-time {
+				background: rgba(255, 255, 255, 0.95);
+				border: 2px solid rgba(255, 255, 255, 0.9);
+				box-shadow: 0 15px 35px rgba(216, 30, 6, 0.15);
+				transform: translateY(0);
+				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			.current-time:hover, .target-time:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 20px 40px rgba(216, 30, 6, 0.2);
+			}
+
+			.time-label {
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--primary-color);
+			}
+
+			#time1 {
+				font-family: 'SF Mono', Monaco, Consolas, monospace;
+				font-size: 22px;
+				color: #333;
+			}
+
+			/* 倒计时样式现代化 */
+			.time {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 25px;
+				padding: 30px 0;
+				margin: 20px 0;
+			}
+
+			/* 优化倒计时块 */
+			.time-block {
+				background: linear-gradient(145deg, #fff, #fff5f5);
+				border-radius: 25px;
+				padding: 30px 40px;
+				box-shadow: 0 10px 30px rgba(216, 30, 6, 0.1);
+				position: relative;
+				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				border: 2px solid rgba(216, 30, 6, 0.1);
+				min-width: 120px;
+				text-align: center;
+				overflow: hidden;
+			}
+
+			.time-block::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(45deg, transparent, rgba(216, 30, 6, 0.05), transparent);
+				transform: translateX(-100%);
+				transition: transform 0.6s ease;
+			}
+
+			.time-block:hover::before {
+				transform: translateX(100%);
+			}
+
+			.time-block::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			.time-block:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 20px 40px rgba(216, 30, 6, 0.2);
+				border-color: rgba(216, 30, 6, 0.2);
+			}
+
+			.time-block:hover::after {
+				opacity: 1;
+			}
+
+			.time-number {
+				font-size: 48px;
+				font-weight: 800;
+				background: linear-gradient(45deg, var(--primary-color), #ff3019);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				margin-bottom: 10px;
+				font-family: 'SF Mono', Monaco, Consolas, monospace;
+				position: relative;
+				display: inline-block;
+			}
+
+			.time-unit {
+				font-size: 18px;
+				color: #666;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				position: relative;
+			}
+
+			/* 添加装饰性元素 */
+			.time-block:nth-child(1)::before {
+				content: '🎊';
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				font-size: 16px;
+				opacity: 0.5;
+			}
+
+			.time-block:nth-child(2)::before {
+				content: '✨';
+			}
+
+			.time-block:nth-child(3)::before {
+				content: '🎉';
+			}
+
+			.time-block:nth-child(4)::before {
+				content: '🎆';
+			}
+
+			/* 添加动画效果 */
+			@keyframes pulse {
+				0%, 100% { transform: scale(1); }
+				50% { transform: scale(1.05); }
+			}
+
+			.time-number {
+				animation: pulse 2s infinite;
+			}
+
+			/* 响应式优化 */
+			@media (max-width: 768px) {
+				.time {
+					flex-wrap: wrap;
+					gap: 15px;
+				}
+
+				.time-block {
+					padding: 20px 25px;
+					min-width: 100px;
+				}
+
+				.time-number {
+					font-size: 36px;
+				}
+
+				.time-unit {
+					font-size: 14px;
+				}
+			}
+
+			/* 节日列表现代化 */
+			.festival-section {
+				background: rgba(255, 255, 255, 0.95);
+				border-radius: 25px;
+				padding: 40px;
+				box-shadow: 0 15px 35px rgba(216, 30, 6, 0.1);
+				backdrop-filter: blur(10px);
+				border: 2px solid rgba(255, 255, 255, 0.9);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.festival-section::before {
+				content: '';
+				position: absolute;
+				top: -2px;
+				left: -2px;
+				right: -2px;
+				bottom: -2px;
+				background: linear-gradient(45deg, #d81e06, #ff3019, #d81e06);
+				z-index: -1;
+				border-radius: 27px;
+				opacity: 0.5;
+			}
+
+			.festival-title {
+				font-size: 32px;
+				font-weight: 700;
+				color: var(--primary-color);
+				text-align: center;
+				margin-bottom: 40px;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.festival-title::before,
+			.festival-title::after {
+				content: '🏮';
+				font-size: 28px;
+				margin: 0 15px;
+				animation: swingLight 3s ease-in-out infinite;
+			}
+
+			@keyframes swingLight {
+				0%, 100% { transform: rotate(-12deg) translateY(0); }
+				50% { transform: rotate(12deg) translateY(-5px); }
+			}
+
+			.eyou-menu-inner {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 15px;
+				padding: 20px;
+			}
+
+			.festival-card {
+				flex: 0 0 calc(25% - 15px);
+				min-width: 200px;
+				background: linear-gradient(145deg, #fff, #fff5f5);
+				border-radius: 15px;
+				padding: 15px 20px;
+				box-shadow: 0 8px 20px rgba(216, 30, 6, 0.08);
+				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				border: 1px solid rgba(216, 30, 6, 0.1);
+				position: relative;
+				overflow: hidden;
+				cursor: pointer;
+			}
+
+			.festival-card:hover {
+				background: linear-gradient(145deg, #ff3019, #d81e06);
+				transform: translateY(-5px) scale(1.02);
+				box-shadow: 0 15px 30px rgba(216, 30, 6, 0.3);
+			}
+
+			.festival-date {
+				font-size: 15px;
+				color: #666;
+				margin-bottom: 5px;
+				transition: all 0.3s ease;
+			}
+
+			.festival-name {
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--primary-color);
+				transition: all 0.3s ease;
+			}
+
+			.festival-card:hover .festival-date,
+			.festival-card:hover .festival-name {
+				color: white;
+			}
+
+			.festival-card::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 3px;
+				background: var(--gradient-primary);
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 0.3s ease;
+			}
+
+			.festival-card:hover::after {
+				transform: scaleX(1);
+			}
+
+			/* 添加节日分类标签 */
+			.festival-tag {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				font-size: 12px;
+				padding: 3px 8px;
+				border-radius: 10px;
+				background: rgba(216, 30, 6, 0.1);
+				color: var(--primary-color);
+				transition: all 0.3s ease;
+			}
+
+			.festival-card:hover .festival-tag {
+				background: rgba(255, 255, 255, 0.2);
+				color: white;
+			}
+
+			/* 页脚现代化 */
+			.footer {
+				position: relative;
+				overflow: hidden;
+				padding: 20px 0;
+				text-align: center;
+			}
+
+			.footer .container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.footer-info {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 20px;
+				color: white;
+				font-size: 15px;
+			}
+
+			.footer-info p {
+				margin: 0;
+				position: relative;
+			}
+
+			.footer-info p:not(:last-child)::after {
+				content: '|';
+				position: absolute;
+				right: -15px;
+				color: rgba(255, 255, 255, 0.3);
+			}
+
+			.footer-info a {
+				color: white;
+				text-decoration: none;
+				opacity: 0.9;
+				transition: opacity 0.3s ease;
+			}
+
+			.footer-info a:hover {
+				opacity: 1;
+			}
+
+			/* 响应式优化 */
+			@media (max-width: 768px) {
+				.section.bg3 {
+					margin: 15px;
+					padding: 20px;
+				}
+
+				.time {
+					flex-wrap: wrap;
+				}
+
+				.time-block {
+					min-width: 80px;
+					padding: 15px;
+				}
+
+				.festival-section {
+					padding: 20px;
+				}
+
+				.footer-info p {
+					display: block;
+					margin: 10px 0;
+				}
+
+				.footer-info p:not(:last-child)::after {
+					display: none;
+				}
+
+				.footer-info {
+					flex-direction: column;
+					gap: 10px;
+				}
+			}
+
+			/* 添加飘落的福字动画 */
+			@keyframes fallDown {
+				0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+				50% { opacity: 1; }
+				100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+			}
+			
+			.falling-fu {
+				position: fixed;
+				pointer-events: none;
+				z-index: 1;
+				font-family: "STKaiti", "楷体", serif;
+				color: #d81e06;
+				opacity: 0.2;
+				animation: fallDown linear infinite;
+			}
+			
+			/* 添加灯笼装饰 */
+			.lantern {
+				position: absolute;
+				width: 60px;
+				height: 80px;
+				background: #d81e06;
+				border-radius: 50% / 10%;
+				animation: swingLantern 3s ease-in-out infinite;
+				box-shadow: 0 5px 15px rgba(216, 30, 6, 0.3);
+			}
+			
+			.lantern::before,
+			.lantern::after {
+				content: '福';
+				position: absolute;
+				color: #fff;
+				font-size: 24px;
+				width: 100%;
+				text-align: center;
+				line-height: 80px;
+				font-family: "STKaiti", "楷体", serif;
+			}
+			
+			.lantern-left {
+				left: 20px;
+				top: 20px;
+				animation-delay: -0.5s;
+			}
+			
+			.lantern-right {
+				right: 20px;
+				top: 20px;
+				animation-delay: 0.5s;
+			}
+			
+			@keyframes swingLantern {
+				0%, 100% { transform: rotate(-5deg); }
+				50% { transform: rotate(5deg); }
+			}
+			
+			/* 添加新年祝福语 */
+			.festival-title::after {
+				content: '恭贺新春';
+				position: absolute;
+				top: -30px;
+				font-size: 16px;
+				color: #d81e06;
+				background: linear-gradient(45deg, #ff3019, #d81e06);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				animation: shine 2s linear infinite;
+			}
+
+			/* 时间显示区域的新样式 */
+			.time-display-section {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				padding: 30px;
+				background: rgba(255, 255, 255, 0.95);
+				border-radius: 25px;
+				box-shadow: 0 15px 35px rgba(216, 30, 6, 0.15);
+				backdrop-filter: blur(10px);
+				border: 2px solid rgba(255, 255, 255, 0.9);
+				position: relative;
+				overflow: hidden;
+				max-width: 800px;
+				margin: 0 auto;
+			}
+
+			.time-display-section::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(45deg, transparent, rgba(216, 30, 6, 0.05), transparent);
+				animation: shimmer 2s infinite;
+			}
+
+			@keyframes shimmer {
+				0% { transform: translateX(-100%); }
+				100% { transform: translateX(100%); }
+			}
+
+			.current-time-box {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 15px;
+				padding: 20px;
+				background: linear-gradient(145deg, #fff, #fff5f5);
+				border-radius: 15px;
+				box-shadow: 0 8px 20px rgba(216, 30, 6, 0.1);
+				position: relative;
+			}
+
+			.current-time-box::before {
+				content: '🕒';
+				font-size: 24px;
+				animation: pulse 2s infinite;
+			}
+
+			@keyframes pulse {
+				0%, 100% { transform: scale(1); }
+				50% { transform: scale(1.1); }
+			}
+
+			.time-label {
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--primary-color);
+				margin-right: 10px;
+			}
+
+			#time1 {
+				font-family: 'SF Mono', Monaco, Consolas, monospace;
+				font-size: 24px;
+				color: #333;
+				background: linear-gradient(45deg, var(--primary-color), #ff3019);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				padding: 0 10px;
+			}
+
+			.target-time-box {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 15px;
+				padding: 20px;
+				background: linear-gradient(145deg, #fff, #fff5f5);
+				border-radius: 15px;
+				box-shadow: 0 8px 20px rgba(216, 30, 6, 0.1);
+				position: relative;
+			}
+
+			.target-time-box::before {
+				content: '🎆';
+				font-size: 24px;
+				animation: bounce 2s infinite;
+			}
+
+			@keyframes bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(-5px); }
+			}
+
+			.target-time-label {
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--primary-color);
+			}
+
+			.target-time-value {
+				font-family: 'SF Mono', Monaco, Consolas, monospace;
+				font-size: 24px;
+				background: linear-gradient(45deg, var(--primary-color), #ff3019);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			/* 倒计时区域新样式 */
+			.countdown-section {
+				background: rgba(255, 255, 255, 0.95);
+				border-radius: 25px;
+				padding: 30px;
+				box-shadow: 0 15px 35px rgba(216, 30, 6, 0.15);
+				backdrop-filter: blur(10px);
+				border: 2px solid rgba(255, 255, 255, 0.9);
+				margin: 30px 0;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.countdown-title {
+				text-align: center;
+				color: var(--primary-color);
+				font-size: 28px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 15px;
+			}
+
+			.countdown-title::before,
+			.countdown-title::after {
+				content: '🎊';
+				font-size: 24px;
+				animation: bounce 2s infinite alternate;
+			}
+
+			.countdown-subtitle {
+				text-align: center;
+				color: #666;
+				font-size: 16px;
+				margin-top: 20px;
+				background: linear-gradient(145deg, #fff, #fff5f5);
+				padding: 12px 20px;
+				border-radius: 50px;
+				display: inline-block;
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+				box-shadow: 0 5px 15px rgba(216, 30, 6, 0.1);
+			}
+
+			.countdown-subtitle::before {
+				content: '📅';
+				margin-right: 8px;
+			}
+
+			.time {
+				display: flex;
+				justify-content: center;
+				gap: 20px;
+				padding: 20px 0;
+			}
+
+			.time-block {
+				background: linear-gradient(145deg, #fff, #fff5f5);
+				border-radius: 20px;
+				padding: 25px 35px;
+				box-shadow: 0 10px 25px rgba(216, 30, 6, 0.1);
+				position: relative;
+				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				border: 2px solid rgba(255, 255, 255, 0.9);
+				min-width: 100px;
+				text-align: center;
+			}
+
+			.time-block::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			.time-block:hover::before {
+				opacity: 1;
+			}
+
+			.time-block:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 15px 30px rgba(216, 30, 6, 0.2);
+			}
+
+			.time-number {
+				font-size: 42px;
+				font-weight: 700;
+				background: linear-gradient(45deg, var(--primary-color), #ff3019);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				margin-bottom: 8px;
+				font-family: 'SF Mono', Monaco, Consolas, monospace;
+			}
+
+			.time-unit {
+				font-size: 16px;
+				color: #666;
+				font-weight: 500;
+			}
+
+			@media (max-width: 768px) {
+				.time {
+					flex-wrap: wrap;
+					gap: 15px;
+				}
+
+				.time-block {
+					padding: 15px 25px;
+					min-width: 80px;
+				}
+
+				.time-number {
+					font-size: 32px;
+				}
+			}
+
+			/* 春节放假时间样式优化 */
+			.holiday-info {
+				text-align: center;
+				margin: 30px 0;
+				position: relative;
+				padding: 20px;
+				background: linear-gradient(145deg, #fff, #fff5f5);
+				border-radius: 50px;
+				box-shadow: 0 10px 25px rgba(216, 30, 6, 0.1);
+				border: 2px solid rgba(255, 255, 255, 0.9);
+				display: inline-block;
+				transition: all 0.3s ease;
+			}
+
+			.holiday-info::before {
+				content: '🎉';
+				margin-right: 10px;
+				font-size: 20px;
+				animation: bounce 2s infinite;
+			}
+
+			.holiday-info::after {
+				content: '🧨';
+				margin-left: 10px;
+				font-size: 20px;
+				animation: bounce 2s infinite;
+				animation-delay: 0.3s;
+			}
+
+			.holiday-text {
+				font-size: 18px;
+				color: var(--primary-color);
+				font-weight: 600;
+				display: inline-block;
+				background: linear-gradient(45deg, var(--primary-color), #ff3019);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			.holiday-info:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 15px 30px rgba(216, 30, 6, 0.2);
+			}
+
+			/* 添加更多福字装饰 */
+			.fu-decoration {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				z-index: 0;
+			}
+
+			.fu-static {
+				position: absolute;
+				font-family: "STKaiti", "楷体", serif;
+				color: #d81e06;
+				opacity: 0.1;
+				font-size: 60px;
+				animation: rotateFu 20s linear infinite;
+			}
+
+			@keyframes rotateFu {
+				from { transform: rotate(0deg); }
+				to { transform: rotate(360deg); }
+			}
+
+			/* 四角福字 */
+			.fu-static:nth-child(1) {
+				top: 50px;
+				left: 50px;
+			}
+
+			.fu-static:nth-child(2) {
+				top: 50px;
+				right: 50px;
+			}
+
+			.fu-static:nth-child(3) {
+				bottom: 50px;
+				left: 50px;
+			}
+
+			.fu-static:nth-child(4) {
+				bottom: 50px;
+				right: 50px;
+			}
+
+			/* 中间装饰福字 */
+			.fu-static:nth-child(5) {
+				top: 50%;
+				left: 100px;
+				transform: translateY(-50%);
+				animation-direction: reverse;
+			}
+
+			.fu-static:nth-child(6) {
+				top: 50%;
+				right: 100px;
+				transform: translateY(-50%);
+				animation-direction: reverse;
+			}
+
+			/* 添加更多喜庆元素 */
+			/* 1. 添加红包装饰 */
+			.red-packet {
+				position: fixed;
+				width: 40px;
+				height: 50px;
+				background: linear-gradient(145deg, #ff3019, #d81e06);
+				border-radius: 5px;
+				box-shadow: 0 5px 15px rgba(216, 30, 6, 0.3);
+				z-index: 1;
+				animation: swingPacket 3s ease-in-out infinite;
+			}
+
+			.red-packet::before {
+				content: '恭喜发财';
+				position: absolute;
+				width: 100%;
+				text-align: center;
+				color: #FFD700;
+				font-size: 12px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				writing-mode: vertical-rl;
+			}
+
+			.red-packet-left {
+				left: 40px;
+				top: 200px;
+			}
+
+			.red-packet-right {
+				right: 40px;
+				top: 200px;
+				animation-delay: 0.5s;
+			}
+
+			@keyframes swingPacket {
+				0%, 100% { transform: rotate(-8deg); }
+				50% { transform: rotate(8deg); }
+			}
+
+			/* 2. 添加春节对联装饰 */
+			.couplet {
+				position: fixed;
+				width: 30px;
+				height: 300px;
+				background: #d81e06;
+				color: #FFD700;
+				writing-mode: vertical-rl;
+				padding: 20px 5px;
+				font-family: "STKaiti", "楷体", serif;
+				font-size: 20px;
+				line-height: 30px;
+				text-align: center;
+				box-shadow: 0 5px 15px rgba(216, 30, 6, 0.3);
+				z-index: 1;
+			}
+
+			.couplet-left {
+				left: 20px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			.couplet-right {
+				right: 20px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			/* 3. 增强福字动画效果 */
+			.fu-static {
+				animation: rotateFu 20s linear infinite;
+			}
+
+			@keyframes glowFu {
+				0%, 100% { text-shadow: 0 0 5px rgba(216, 30, 6, 0.3); }
+				50% { text-shadow: 0 0 15px rgba(216, 30, 6, 0.5); }
+			}
+
+			/* 4. 添加烟花效果 */
+			@keyframes firework {
+				0% { transform: scale(0); opacity: 1; }
+				50% { transform: scale(1); opacity: 0.8; }
+				100% { transform: scale(1.2); opacity: 0; }
+			}
+
+			.firework {
+				position: fixed;
+				pointer-events: none;
+				z-index: 0;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: radial-gradient(circle, #FFD700, #ff3019);
+				animation: firework 1s ease-out forwards;
+				mix-blend-mode: screen;
+				filter: blur(1px);
+			}
+
+			/* 5. 优化背景渐变 */
+			body {
+				background: linear-gradient(135deg, #ff9b9b, #ffe4e4, #ffd7d7, #ffecec);
+				background-size: 400% 400%;
+				animation: gradientBG 15s ease infinite;
+			}
+
+			/* 6. 添加节日装饰边框 */
+			.festival-section {
+				border: 2px solid rgba(216, 30, 6, 0.2);
+				background-image: 
+					linear-gradient(45deg, transparent 48%, #d81e06 49%, #d81e06 51%, transparent 52%),
+					linear-gradient(-45deg, transparent 48%, #d81e06 49%, #d81e06 51%, transparent 52%);
+				background-size: 30px 30px;
+				background-position: 0 0;
+				animation: borderMove 30s linear infinite;
+			}
+
+			@keyframes borderMove {
+				from { background-position: 0 0; }
+				to { background-position: 60px 60px; }
+			}
+
+			/* 增加更多福字效果 */
+			.fu-rain {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				z-index: 1;
+			}
+
+			.fu-static-large {
+				position: absolute;
+				font-family: "STKaiti", "楷体", serif;
+				font-size: 120px;
+				color: rgba(216, 30, 6, 0.05);
+				animation: rotateLargeFu 20s linear infinite;
+				z-index: -1;
+			}
+
+			@keyframes rotateLargeFu {
+				from { transform: rotate(0deg) scale(1); opacity: 0.05; }
+				50% { opacity: 0.08; }
+				to { transform: rotate(360deg) scale(1.1); opacity: 0.05; }
+			}
+
+			/* 福字背景装饰 */
+			.fu-bg {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				z-index: -1;
+				opacity: 0.03;
+				pointer-events: none;
+			}
+
+			.fu-bg::before {
+				content: '福';
+				position: absolute;
+				font-size: 200px;
+				color: #d81e06;
+				font-family: "STKaiti", "楷体", serif;
+				animation: floatBgFu 10s ease-in-out infinite;
+			}
+
+			@keyframes floatBgFu {
+				0%, 100% { transform: translate(30%, 20%) rotate(15deg); }
+				50% { transform: translate(32%, 22%) rotate(20deg); }
+			}
+
+			/* 添加福字水印效果 */
+			.fu-watermark {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: -2;
+				pointer-events: none;
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+				gap: 60px;
+				padding: 40px;
+				transform: rotate(-15deg) scale(0.9);
+				opacity: 0.02;
+			}
+
+			.fu-watermark-item {
+				font-family: "STKaiti", "楷体", serif;
+				color: rgba(216, 30, 6, 0.03);
+				font-size: 80px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				animation: fadeInOut 8s infinite;
+			}
+
+			@keyframes fadeInOut {
+				0%, 100% { opacity: 0.02; }
+				50% { opacity: 0.04; }
+			}
+
+			/* 错开水印动画时间 */
+			.fu-watermark-item:nth-child(3n) {
+				animation-delay: -2s;
+			}
+
+			.fu-watermark-item:nth-child(3n+1) {
+				animation-delay: -4s;
+			}
+
+			.fu-watermark-item:nth-child(3n+2) {
+				animation-delay: -6s;
+			}
+
+			/* 优化性能和视觉效果 */
+			/* 1. 优化动画性能 */
+			.fu-static,
+			.fu-static-large,
+			.firework,
+			.falling-fu {
+				will-change: transform;
+				backface-visibility: hidden;
+				transform: translateZ(0);
+			}
+
+			/* 2. 优化水印布局 */
+			.fu-watermark {
+				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+				gap: 60px;
+				padding: 40px;
+				transform: rotate(-15deg) scale(0.9);
+				opacity: 0.02;
+			}
+
+			/* 3. 优化页面滚动性能 */
+			html {
+				scroll-behavior: smooth;
+				overflow-y: overlay;
+			}
+
+			/* 4. 优化节日卡片布局 */
+			.eyou-menu-inner {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 15px;
+				padding: 20px;
+			}
+
+			.festival-card {
+				flex: 0 0 calc(25% - 15px);
+				min-width: 200px;
+			}
+
+			/* 5. 优化倒计时区域 */
+			.time-display-section {
+				max-width: 800px;
+				margin: 0 auto;
+			}
+
+			/* 6. 优化移动端适配 */
+			@media (max-width: 768px) {
+				.festival-card {
+					flex: 0 0 calc(50% - 15px);
+					min-width: 150px;
+				}
+
+				.fu-watermark {
+					gap: 40px;
+					padding: 20px;
+				}
+
+				.couplet {
+					display: none;
+				}
+
+				.red-packet {
+					width: 30px;
+					height: 40px;
+				}
+			}
+
+			/* 7. 优化动画执行次数 */
+			.fu-static {
+				animation: rotateFu 20s linear infinite;
+			}
+
+			/* 8. 优化烟花效果 */
+			.firework {
+				mix-blend-mode: screen;
+				filter: blur(1px);
+			}
+		</style>
+
+	</head>
+	<body onload="systemTime()">
+		<!-- 添加静态福字装饰 -->
+		<div class="fu-decoration">
+			<div class="fu-static">福</div>
+			<div class="fu-static">福</div>
+			<div class="fu-static">福</div>
+			<div class="fu-static">福</div>
+			<div class="fu-static">福</div>
+			<div class="fu-static">福</div>
+		</div>
+		<!-- 添加大型福字背景 -->
+		<div class="fu-bg"></div>
+
+		<!-- 添加大型旋转福字 -->
+		<div class="fu-rain">
+			<div class="fu-static-large" style="top: 15%; left: 15%;">福</div>
+			<div class="fu-static-large" style="top: 25%; right: 20%;">福</div>
+			<div class="fu-static-large" style="bottom: 20%; left: 25%;">福</div>
+			<div class="fu-static-large" style="bottom: 30%; right: 15%;">福</div>
+		</div>
+
+		<div class="swiper-container banner">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" style="background-image: url(./static/image/2023.jpg);"><a></a></div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		<div class="section bg3">
+			<div class="container">
+				<div class="section-title wow fadeInUp">
+					<div class="time-display-section">
+						<div class="current-time-box">
+							<span class="time-label">当前时间：</span>
+							<span id="time1"></span>
+						</div>
+						<div class="target-time-box">
+							<span class="target-time-label">除夕夜0点时间：</span>
+							<span class="target-time-value">2025-01-28 00:00:00</span>
+						</div>
+					</div>
+				</div>
+				<dl class="in-about clearfix wow fadeInUp">
+					<dd>
+						<h4 style="text-align: center;">距离2025春节倒计时还有<div id="time" class="time" align="center"></div>
+							<div class="holiday-info">
+								<span class="holiday-text">春节放假时间：2025-01-27 18:00:00</span>
+							</div>
+						</h4>
+						<P>
+							<script language=javascript>
+								function show_date_time() {
+									window.setTimeout("show_date_time()", 1000);
+									target = new Date(2025, 0, 29, 0, 0, 0); // 月份参数0代表1月
+									today = new Date();
+
+									timeold = (target.getTime() - today.getTime());
+
+									sectimeold = timeold / 1000
+										secondsold = Math.floor(sectimeold);
+									msPerDay = 24 * 60 * 60 * 1000
+									e_daysold = timeold / msPerDay
+									daysold = Math.floor(e_daysold);
+									e_hrsold = (e_daysold - daysold) * 24;
+									hrsold = Math.floor(e_hrsold);
+									e_minsold = (e_hrsold - hrsold) * 60;
+									minsold = Math.floor((e_hrsold - hrsold) * 60);
+									seconds = Math.floor((e_minsold - minsold) * 60);
+
+									if (daysold < 0) {
+										document.getElementById("time").innerHTML = "逾期,倒计时已经失效";
+									} else {
+										if (daysold > 0) {
+											document.getElementById("time").innerHTML = `
+												<div class="time-block" style="--i: 0">
+													<div class="time-number">${daysold}</div>
+													<div class="time-unit">天</div>
+												</div>
+												<div class="time-block" style="--i: 1">
+													<div class="time-number">${hrsold}</div>
+													<div class="time-unit">小时</div>
+												</div>
+												<div class="time-block" style="--i: 2">
+													<div class="time-number">${minsold}</div>
+													<div class="time-unit">分钟</div>
+												</div>
+												<div class="time-block" style="--i: 3">
+													<div class="time-number">${seconds}</div>
+													<div class="time-unit">秒</div>
+												</div>
+											`;
+										} else {
+											document.getElementById("time").innerHTML = 
+												"<span style='color:#d81e06; font-size:40px; text-shadow: 2px 2px 4px rgba(216,30,6,0.3);'>" + 
+												daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒</span>";
+										}
+									}
+								}
+								show_date_time();
+							</script>
+						</P>
+					</dd>
+				</dl>
+				<dl class="in-about clearfix wow fadeInUp">
+					<dd>
+						<div class="festival-section">
+							<h4 class="festival-title">2024/2025年节日时间</h4>
+							<div class="eyou-menu-inner">
+								<!-- 2024年底节日 -->
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2024.12.22</div>
+									<div class="festival-name">冬　至</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2024.12.24</div>
+									<div class="festival-name">平安夜</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2024.12.25</div>
+									<div class="festival-name">圣诞节</div>
+								</div>
+								
+								<!-- 2025年节日 -->
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.01.01</div>
+									<div class="festival-name">元　旦</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.01.21</div>
+									<div class="festival-name">北小年</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.01.22</div>
+									<div class="festival-name">南小年</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.01.28</div>
+									<div class="festival-name">除夕夜</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.01.29</div>
+									<div class="festival-name">春　节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.02.12</div>
+									<div class="festival-name">元宵节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.02.14</div>
+									<div class="festival-name">情人节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.02.27</div>
+									<div class="festival-name">龙抬头</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">国际节日</div>
+									<div class="festival-date">2025.03.08</div>
+									<div class="festival-name">妇女节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.03.12</div>
+									<div class="festival-name">植树节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.04.04</div>
+									<div class="festival-name">清明节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.04.20</div>
+									<div class="festival-name">复活节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">国际节日</div>
+									<div class="festival-date">2025.05.01</div>
+									<div class="festival-name">劳动节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">国际节日</div>
+									<div class="festival-date">2025.05.04</div>
+									<div class="festival-name">青年节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.05.11</div>
+									<div class="festival-name">母亲节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">国际节日</div>
+									<div class="festival-date">2025.06.01</div>
+									<div class="festival-name">儿童节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.06.15</div>
+									<div class="festival-name">父亲节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.06.31</div>
+									<div class="festival-name">端午节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">国际节日</div>
+									<div class="festival-date">2025.07.01</div>
+									<div class="festival-name">建党节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">国际节日</div>
+									<div class="festival-date">2025.08.01</div>
+									<div class="festival-name">建军节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.08.29</div>
+									<div class="festival-name">七夕节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">国际节日</div>
+									<div class="festival-date">2025.09.10</div>
+									<div class="festival-name">教师节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.09.13</div>
+									<div class="festival-name">中秋节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">国际节日</div>
+									<div class="festival-date">2025.10.01</div>
+									<div class="festival-name">国庆节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.10.23</div>
+									<div class="festival-name">重阳节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.10.31</div>
+									<div class="festival-name">万圣节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.11.27</div>
+									<div class="festival-name">感恩节</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">传统节日</div>
+									<div class="festival-date">2025.12.21</div>
+									<div class="festival-name">冬　至</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.12.24</div>
+									<div class="festival-name">平安夜</div>
+								</div>
+								<div class="festival-card">
+									<div class="festival-tag">西方节日</div>
+									<div class="festival-date">2025.12.25</div>
+									<div class="festival-name">圣诞节</div>
+								</div>
+							</div>
+						</div>
+					</dd>
+				</dl>
+
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container clearfix">
+				<div class="footer-info">
+					<p>Albert千凝</p>
+					<p>ICP证：<a href="https://beian.miit.gov.cn" rel="nofollow" target="_blank">京ICP备xxxxxxxx号</a></p>
+					<p>2025 © Albert千凝 版权所有</p>
+				</div>
+			</div>
+		</div>
+		<audio id="bgm" src="./static/audio/dida.aac" autoplay preload loop="loop"></audio>
+		<script>
+		function systemTime() {
+			// 获取系统当前时间
+			var dateTime = new Date();
+			// 转换为北京时间（UTC+8）
+			var utc = dateTime.getTime() + (dateTime.getTimezoneOffset() * 60000);
+			var beijingTime = new Date(utc + (3600000 * 8));
+			
+			var year = beijingTime.getFullYear();
+			var month = beijingTime.getMonth() + 1;
+			var day = beijingTime.getDate();
+			var hh = beijingTime.getHours();
+			var mm = beijingTime.getMinutes();
+			var ss = beijingTime.getSeconds();
+			
+			// 补零
+			month = month < 10 ? "0" + month : month;
+			day = day < 10 ? "0" + day : day;
+			hh = hh < 10 ? "0" + hh : hh;
+			mm = mm < 10 ? "0" + mm : mm;
+			ss = ss < 10 ? "0" + ss : ss;
+			
+			// 显示时间格式：2024-01-05 12:30:25
+			document.getElementById("time1").innerHTML = 
+				year + "-" + month + "-" + day + " " + hh + ":" + mm + ":" + ss;
+			
+			// 每秒更新一次
+			setTimeout('systemTime()', 1000);
+		}
+		</script>
+		<script>
+			function createFallingFu() {
+				// 限制同时存在的福字数量
+				const maxFu = document.querySelectorAll('.falling-fu').length;
+				if (maxFu > 50) return;
+
+				const fuVariants = ['福', '福', '福', '囍', '春'];
+				const fu = document.createElement('div');
+				fu.className = 'falling-fu';
+				fu.textContent = fuVariants[Math.floor(Math.random() * fuVariants.length)];
+				fu.style.left = Math.random() * 100 + 'vw';
+				fu.style.fontSize = Math.random() * 20 + 20 + 'px';
+				fu.style.animationDuration = Math.random() * 5 + 5 + 's';
+				fu.style.transform = `rotate(${Math.random() * 360}deg)`;
+				fu.style.color = Math.random() > 0.5 ? '#d81e06' : '#FFD700';
+				document.body.appendChild(fu);
+				
+				// 使用 requestAnimationFrame 优化动画
+				requestAnimationFrame(() => {
+					fu.style.transform = `translateY(100vh) rotate(${Math.random() * 720}deg)`;
+				});
+				
+				setTimeout(() => {
+					fu.remove();
+				}, 1000);
+			}
+			
+			// 创建多个福字
+			function createMultipleFu() {
+				for(let i = 0; i < 5; i++) {  // 增加数量
+					setTimeout(createFallingFu, i * 200);
+				}
+			}
+			
+			setInterval(createMultipleFu, 1500);  // 缩短间隔
+		</script>
+		<div class="lantern lantern-left"></div>
+		<div class="lantern lantern-right"></div>
+		<div class="red-packet red-packet-left"></div>
+		<div class="red-packet red-packet-right"></div>
+		<div class="couplet couplet-left">新春快乐万事如意</div>
+		<div class="couplet couplet-right">春节吉祥事事顺心</div>
+		<script>
+			function createFirework() {
+				// 限制同时存在的烟花数量
+				const maxFireworks = document.querySelectorAll('.firework').length;
+				if (maxFireworks > 30) return;
+
+				const firework = document.createElement('div');
+				firework.className = 'firework';
+				firework.style.left = Math.random() * window.innerWidth + 'px';
+				firework.style.top = Math.random() * window.innerHeight + 'px';
+				document.body.appendChild(firework);
+				
+				// 使用 requestAnimationFrame 优化动画
+				requestAnimationFrame(() => {
+					firework.style.transform = 'scale(1.2)';
+					firework.style.opacity = '0';
+				});
+				
+				setTimeout(() => {
+					firework.remove();
+				}, 1000);
+			}
+
+			// 定期创建烟花
+			setInterval(() => {
+				for(let i = 0; i < 3; i++) {
+					setTimeout(createFirework, i * 200);
+				}
+			}, 2000);
+		</script>
+		<script>
+			// 鼠标点击特效
+			function createClickEffect(event) {
+				const colors = ['#ff3019', '#d81e06', '#FFD700', '#ff6b6b'];
+				const particles = 6;
+				
+				for (let i = 0; i < particles; i++) {
+					const particle = document.createElement('div');
+					particle.className = 'click-particle';
+					particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+					particle.style.left = event.clientX + 'px';
+					particle.style.top = event.clientY + 'px';
+					particle.style.setProperty('--angle', (360 / particles) * i + 'deg');
+					document.body.appendChild(particle);
+					
+					setTimeout(() => particle.remove(), 1000);
+				}
+			}
+
+			document.addEventListener('click', createClickEffect);
+		</script>
+		<!-- 添加福字水印 -->
+		<div class="fu-watermark">
+			<!-- 生成48个福字水印 (6行8列) -->
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<div class="fu-watermark-item">福</div>
+			<!-- ... 重复直到48个 ... -->
+		</div>
+	</body>
+</html>
